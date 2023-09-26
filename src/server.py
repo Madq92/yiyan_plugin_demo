@@ -69,7 +69,7 @@ async def plugin_logo():
     return send_file('logo.png', mimetype='image/png')
 
 
-@app.route("/ai-plugin.json")
+@app.route("/.well-known/ai-plugin.json")
 async def plugin_manifest():
     """
         注册用的：返回插件的描述文件，描述了插件是什么等信息。
@@ -81,7 +81,7 @@ async def plugin_manifest():
         return text, 200, {"Content-Type": "application/json"}
 
 
-@app.route("/openapi.yaml")
+@app.route("/.well-known/openapi.yaml")
 async def openapi_spec():
     """
         注册用的：返回插件所依赖的插件服务的API接口描述，参照openapi规范编写。
@@ -91,24 +91,6 @@ async def openapi_spec():
         text = f.read()
         return text, 200, {"Content-Type": "text/yaml"}
     
-
-@app.route("/.well-known/ai-plugin.json")
-async def well_know_plugin_manifest():
-    host = request.host_url
-    with open(".well-known/ai-plugin.json", encoding="utf-8") as f:
-        text = f.read().replace("PLUGIN_HOST", host)
-        return text, 200, {"Content-Type": "application/json"}
-
-
-@app.route("/.well-known/openapi.yaml")
-async def well_know_openapi_spec():
-    with open(".well-known/openapi.yaml", encoding="utf-8") as f:
-        text = f.read()
-        return text, 200, {"Content-Type": "text/yaml"}
-
-
-
-
 
 @app.route('/')
 def index():
