@@ -90,6 +90,30 @@ async def openapi_spec():
     with open(".well-known/openapi.yaml", encoding="utf-8") as f:
         text = f.read()
         return text, 200, {"Content-Type": "text/yaml"}
+    
+
+@app.route("/.well-known/ai-plugin.json")
+async def plugin_manifest():
+    """
+        注册用的：返回插件的描述文件，描述了插件是什么等信息。
+        注意：API路由是固定的，事先约定的。
+    """
+    host = request.host_url
+    with open(".well-known/ai-plugin.json", encoding="utf-8") as f:
+        text = f.read().replace("PLUGIN_HOST", host)
+        return text, 200, {"Content-Type": "application/json"}
+
+
+@app.route("/.well-known/openapi.yaml")
+async def openapi_spec():
+    """
+        注册用的：返回插件所依赖的插件服务的API接口描述，参照openapi规范编写。
+        注意：API路由是固定的，事先约定的。
+    """
+    with open(".well-known/openapi.yaml", encoding="utf-8") as f:
+        text = f.read()
+        return text, 200, {"Content-Type": "text/yaml"}
+
 
 
 
@@ -99,4 +123,4 @@ def index():
     return 'welcome to my webpage!'
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=8080)
+    app.run(debug=True, host='0.0.0.0', port=8081)
