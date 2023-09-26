@@ -27,7 +27,7 @@ build(){
 }
 
 start(){
-    docker run -d -p 7000:8080 --name yiyan yiyan_plugin_demo:v1.2
+    docker run -d -p 127.0.0.1:7000:8080 --name yiyan yiyan_plugin_demo:v1.2
 }
 
 stop(){
