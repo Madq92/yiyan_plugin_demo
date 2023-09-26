@@ -15,7 +15,7 @@ if [ $# -lt 1 ]; then
     exit 2 # bad usage
 fi
 
-APP_HOME=$(cd $(dirname ${BASH_SOURCE[0]})/..; pwd)
+APP_HOME=$(cd $(dirname ${BASH_SOURCE[0]}); pwd)
 echo "INFO: APP_HOME= ${APP_HOME}"
 
 update(){
@@ -56,4 +56,4 @@ main() {
     esac
 }
 
-main | tee -a ${APP_HOME}/logs/${APP_NAME}_deploy.log; check_first_pipe_exit_code;
+main
