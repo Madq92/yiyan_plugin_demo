@@ -50,6 +50,12 @@ main() {
             build
             start
         ;;
+        start)
+            start
+        ;;
+        stop)
+            stop
+        ;;
         *)
             usage
         ;;
