@@ -14,4 +14,4 @@ COPY demo_server.py /app
 COPY logo.png /app
 
 EXPOSE 8080
-CMD [ "python", "server.py" ]
+CMD [ "python", "demo_server.py" ]

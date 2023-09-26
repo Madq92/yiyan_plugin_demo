@@ -35,6 +35,14 @@ stop(){
     docker rm yiyan
 }
 
+all(){
+    git pull
+    docker build -t yiyan_plugin_demo:v1.2 .
+    docker stop yiyan
+    docker rm yiyan
+    docker run -d -p 127.0.0.1:7000:8080 --name yiyan yiyan_plugin_demo:v1.2
+}
+
 main() {
     now=`date "+%Y-%m-%d %H:%M:%S"`
     echo "$now--------------------------"
