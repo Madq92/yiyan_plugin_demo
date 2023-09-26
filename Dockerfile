@@ -9,7 +9,7 @@ COPY requirements.txt ./
 RUN pip install --index-url https://pypi.tuna.tsinghua.edu.cn/simple/ -r requirements.txt
 
 # Bundle app source
-COPY .well-known /app
+COPY .well-known /app/.well-known
 COPY demo_server.py /app
 COPY logo.png /app
 
