@@ -93,26 +93,13 @@ async def openapi_spec():
     
 
 @app.route("/.well-known/ai-plugin.json")
-async def plugin_manifest():
-    """
-        注册用的：返回插件的描述文件，描述了插件是什么等信息。
-        注意：API路由是固定的，事先约定的。
-    """
-    host = request.host_url
-    with open(".well-known/ai-plugin.json", encoding="utf-8") as f:
-        text = f.read().replace("PLUGIN_HOST", host)
-        return text, 200, {"Content-Type": "application/json"}
+async def well_know_plugin_manifest():
+    return plugin_manifest();
 
 
 @app.route("/.well-known/openapi.yaml")
-async def openapi_spec():
-    """
-        注册用的：返回插件所依赖的插件服务的API接口描述，参照openapi规范编写。
-        注意：API路由是固定的，事先约定的。
-    """
-    with open(".well-known/openapi.yaml", encoding="utf-8") as f:
-        text = f.read()
-        return text, 200, {"Content-Type": "text/yaml"}
+async def well_know_openapi_spec():
+    return openapi_spec();
 
 
 
